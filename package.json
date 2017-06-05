@@ -7,6 +7,9 @@
   "author": "Nathan D Hernandez <nathandhernandez@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "jquery": "^3.2.1"
+    "bulma": "^0.4.2",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "knockout": "^3.4.2"
   }
 }
