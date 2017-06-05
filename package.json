@@ -1,0 +1,12 @@
+{
+  "name": "udacity-neighborhood-map",
+  "version": "0.0.1",
+  "description": "Neighborhood Map Udacity FullStack Nano",
+  "main": "index.js",
+  "repository": "https://github.com/nathandh/udacity-neighborhood-map.git",
+  "author": "Nathan D Hernandez <nathandhernandez@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
