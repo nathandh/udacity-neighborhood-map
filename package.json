@@ -7,9 +7,10 @@
   "author": "Nathan D Hernandez <nathandhernandez@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "bulma": "^0.4.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
-    "knockout": "^3.4.2"
+    "knockout": "^3.4.2",
+    "purecss": "^1.0.0",
+    "sammy": "^0.7.6"
   }
 }
