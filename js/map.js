@@ -1,6 +1,25 @@
+/* 
+Nathan D. Hernandez
+Udacity FullStack NanoDegree
+
+ver 0.1 - June 2017
+
+map.js:
+Includes the Google MAP Api Specific load Javasript to implement javascript map 
+functionality within our web application. Implementaiton was done by 
+using examples and documentation as found on https://developers.google.com.
+
+KnockoutJS ViewModel is also implemented below using KnockoutJS documentation.
+*/
+
+"use strict";
+
+/* GOOGLE MAPS Specific */
+
 var geocoder;
 var map;
 
+// Our initial map scope in Manhattan
 var NYC_ROCKEFELLER = "45 Rockefeller Plaza, New York, NY 10111"
 
 function geocode(address, callback){
@@ -23,6 +42,9 @@ function placesCallback(results, status) {
 			createMarker(results[i]);
 			console.log("Found nearby Church: " + place);
 		}
+	} else {
+		console.log("Finding nearby Churches failed due to: " + status);
+		$('#map').prepend("<p>Failed to find any nearby Church places....</p>");
 	}
 }
 
@@ -58,7 +80,26 @@ function initMap() {
 			}
 			var placesService = new google.maps.places.PlacesService(map);
 			placesService.nearbySearch(churchRequest, placesCallback);
+		} else {
+				$('#map').prepend("<p>Failed to load Google Map! API service may be down...</p>");
 		}
 	});
 }
 
+
+/* KNOCKOUT JS Specific */
+
+/*
+MapViewModel
+KnockoutJS ViewModel Implementation. Completed by using examples and 
+documentation as found on https://knockoutjs.com/.
+*/
+var MapViewModel = function() {
+	this.updateMarkers = function() {
+		return null;
+	}
+}
+
+$(document).ready(function(){
+	ko.applyBindings(new MapViewModel());
+});

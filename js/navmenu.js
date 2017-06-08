@@ -1,3 +1,17 @@
+/* 
+Nathan D. Hernandez
+Udacity FullStack NanoDegree
+
+ver 0.1 - June 2017
+
+navmenu.js:
+The Navigation Menu Specific Javasript to implement PureCSS CSS Web Framework 
+navigation responsive menu. Implementaiton was done by using examples and 
+documentation as found on https://purecss.io.
+*/
+
+"use strict";
+
 // Customized Responsive NavMenu, from PureCSS dociumentation/examples
 // See: https://purecss.io/layouts/side-menu/
 function navigation(window, document) {
