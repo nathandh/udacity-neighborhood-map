@@ -114,6 +114,8 @@ function setInfoWindow(marker, place) {
 			lastInfoWindow.close();
 			lastMarkerAnimation.setIcon(null);
 		}
+
+		var iwindow = this;
 		getWikipediaInfo(place, function(wikiObj){
 			console.log(wikiObj);
 			if (typeof(wikiObj) !== 'undefined'){
@@ -142,18 +144,17 @@ function setInfoWindow(marker, place) {
 								   '</h4>'
 									+ wikiData + 
 									'</div>');
+
+			// Center map on marker
+			map.setCenter(latLng);
+
+			// Open our info window
+			infoWindow.open(map, iwindow);
+			iwindow.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
+			// Set infoWindow as last info window opened
+			lastInfoWindow = infoWindow;
 		});
-
-		// Center map on marker
-		map.setCenter(latLng);
-
-		// Open our info window
-		infoWindow.open(map, this);
-		this.setIcon("http://maps.google.com/mapfiles/ms/icons/green-dot.png");
-		// Set infoWindow as last info window opened
-		lastInfoWindow = infoWindow;
 	});
-	
 	return marker;
 }
 
@@ -260,7 +261,7 @@ function placesCallback(results, status) {
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
 		scrollwheel: false,
-		zoom: 14
+		zoom: 15
 	});
 	
 	geocoder = new google.maps.Geocoder();
