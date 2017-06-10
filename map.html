@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Neighborhood Map - Udacity</title>
+	<title>Neighborhood Map (Churches) - Udacity</title>
 	
 	<!-- Meta -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="A listing of Catholic Churches in Manhattan NYC.">
+	<meta name="description" content="A listing of Churches in Manhattan NYC.">
 	<!-- IE Specific compatibility fixes -->
 	<!--[if lt IE 9]>
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
@@ -19,12 +19,12 @@
 	
 	<!-- Styling sources -->
 	<link type="text/css" rel="stylesheet" href="/node_modules/purecss/build/pure-min.css" />
-	<link type="text/css" rel="stylesheet" herf="/node_modules/font-awesome/css/font-awesome-min.css" />
-	<link type="text/css" rel="stylesheet" href="/css/navmenu.css" />
+	<link type="text/css" rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css" />
 	<link type="text/css" rel="stylesheet" href="/css/map.css" />
 
 	<!-- Javascript sources -->
 	<script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="/node_modules/knockout/build/output/knockout-latest.js"></script>
 	<script type="text/javascript" src="/js/navmenu.js"></script>
 	<script type="text/javascript" src="/js/map.js"></script>
 </head>
@@ -39,17 +39,27 @@
 
 		<div id="navmenu">
 			<div class="pure-menu">
-				<a class="pure-menu-heading" href="#">Churches</a>
-
-				<ul class="pure-menu-list">
-					<li class="pure-menu-item"><a href="#" class="pure-menu-link">Church 1</a></li>
+				<a class="pure-menu-heading" href="#">Churches
+					(<span data-bind="text: mapListItems().length"></span>)
+				</a>
+				<div class="map-list-filter">
+					<input type="search" placeholder="Church Name..." 
+						data-bind="value: filter, valueUpdate: 'keyup'" autocompelte="off" />
+					<i class="fa fa-filter" aria-hidden="true"></i>
+				</div>
+				<ul data-bind="foreach: mapListItems" class="pure-menu-list">
+					<!-- Church ListView -->
+					<li class="pure-menu-item">
+						<a href="#" class="pure-menu-link" 
+						   data-bind="text: $data.name, click: $parent.showChurchInfo"></a>
+					</li>
 				</ul>
 			</div>
 		</div> <!-- /#navmenu -->
 
 		<div id="main-page-content">
 			<div class="header">
-				<h1>Manhattan NYC Churches</h1>
+				<h1>NYC Churches</h1>
 			</div>
 			<div class="content">
 				<div id="map"></div>
