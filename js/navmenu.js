@@ -66,7 +66,7 @@ function navigation(window, document) {
 			toggleAll(e);
 		}
 	};
-};
+}
 
 $(document).ready(function() {
 	navigation(window, document);

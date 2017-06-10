@@ -28,10 +28,10 @@ var lastInfoWindow;
 var lastMarkerAnimation;
 
 // Our initial map scope in Manhattan
-var NYC_ROCKEFELLER = "45 Rockefeller Plaza, New York, NY 10111"
+var NYC_ROCKEFELLER = "45 Rockefeller Plaza, New York, NY 10111";
 
 var KEYWORDS = ["church", "cathedral", "baptist", "catholic", 
-				"christian", "sacred", "fellowship","protestant"]
+				"christian", "sacred", "fellowship","protestant"];
 
 function geocode(address, callback){
 	geocoder.geocode( {'address': address}, function(results, status) {
@@ -127,26 +127,26 @@ function setInfoWindow(marker, place) {
 				var description = 'No Wiki description available...';
 				var pageid = wikiObj.pageid;
 				if (wikiObj.hasOwnProperty("terms")){
-					description = wikiObj["terms"].description;
+					description = wikiObj.terms.description;
 				}
-				wikiData = '<div class="wikidata"><img src="'
-							+ wikiObj.thumbnail.source + 
-							'" height="'
-							+ wikiObj.height + 
-							'" width="' 
-							+ wikiObj.width + 
-							'" ><div class="wiki-description">'
-							+ description +
-							'</div><div class="wiki-link">'
-							+ '<a href="http://en.wikipedia.org/?curid='
-							+ pageid +
+				wikiData = '<div class="wikidata"><img src="' +
+							wikiObj.thumbnail.source + 
+							'" height="' +
+							wikiObj.height + 
+							'" width="' +
+							wikiObj.width + 
+							'" ><div class="wiki-description">' +
+							description +
+							'</div><div class="wiki-link">' +
+							'<a href="http://en.wikipedia.org/?curid=' +
+							pageid +
 							'" target="_blank">Wikipedia Page</a></div>';
 			}
 			
-			infoWindow.setContent('<div class="marker-info"><h4>'
-									+ place.name + 
-								   '</h4>'
-									+ wikiData + 
+			infoWindow.setContent('<div class="marker-info"><h4>' + 
+									place.name + 
+								   '</h4>' + 
+								   wikiData + 
 									'</div>');
 
 			// Center map on marker
@@ -166,8 +166,8 @@ function setInfoWindow(marker, place) {
 function setMapOnAll(map) {
 	console.log("In setMapOnAll()");
 	for (var i = 0; i < filterMapListItems().length; i++){
-		var currItem = filterMapListItems()[i]
-		var currItemMarker = churchMarkers[currItem.marker]
+		var currItem = filterMapListItems()[i];
+		var currItemMarker = churchMarkers[currItem.marker];
 		// console.log(currItem.name);
 
 		if (map === null){
@@ -238,7 +238,7 @@ function placesCallback(results, status) {
 					}
 				}
 
-				if (keyMatch != false){
+				if (keyMatch !== false){
 					churchMarkers.push(createMarker(results[i]));
 					// console.log("Found nearby Church: " + place);
 					// Update NavMenu List
@@ -284,7 +284,7 @@ function initMap() {
 				location: latlng,
 				radius: '1000',
 				types: ['church']
-			}
+			};
 			var placesService = new google.maps.places.PlacesService(map);
 			placesService.nearbySearch(churchRequest, placesCallback);
 			// Refere to placesCallback() function for nearby place handling
@@ -306,7 +306,7 @@ var MapViewModel = function() {
 	self.mapListItems = mapListItems;
 	self.filter = ko.observable('');
 	self.filterSearch = function(value) {
-		self.mapListItems.removeAll()
+		self.mapListItems.removeAll();
 		clearMarkers();
 		for (var i = 0; i < filterMapListItems().length; i++) {
 			var currItem = filterMapListItems()[i];
@@ -317,7 +317,7 @@ var MapViewModel = function() {
 				showMarkers();
 			}
 		}
-	}
+	};
 	self.showChurchInfo = function(church) {
 		console.log("In showChurchInfo for church: " + church.name);
 		var index = -1;
@@ -333,10 +333,10 @@ var MapViewModel = function() {
 
 			new google.maps.event.trigger(churchMarkers[currChurch.marker], 'click');
 		}
-	}
+	};
 
 	self.filter.subscribe(self.filterSearch);
-}
+};
 
 $(document).ready(function(){
 	ko.applyBindings(new MapViewModel());
