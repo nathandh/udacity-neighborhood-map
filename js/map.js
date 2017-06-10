@@ -71,13 +71,13 @@ function getWikipediaInfo(place, callback){
 	var lat = place.geometry.location.lat();
 	var lng = place.geometry.location.lng();
 	var name = place.name;
+	var wikiObj;
 	$.ajax({
 		type: "GET",
 		url: "https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&prop=coordinates|pageimages|pageterms&colimit=25&piprop=thumbnail&pithumbsize=150&pilimit=25&wbptterms=description&generator=geosearch&ggscoord="+lat+"|"+lng+"&ggsradius=100&ggslimit=5",
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		success: function(data){
-			var wikiObj;
 			var keyMatch = false;
 			//console.log(data);
 			if (data.hasOwnProperty("query")){
@@ -100,6 +100,10 @@ function getWikipediaInfo(place, callback){
 			}
 			callback(wikiObj);
 		}
+	}).fail(function(){
+		// Inform the user our Wikipedia lookup failed
+		alert("Wikipedia lookup for more church information failed!");
+		callback(wikiObj);
 	});
 }
 
@@ -164,7 +168,7 @@ function setMapOnAll(map) {
 	for (var i = 0; i < filterMapListItems().length; i++){
 		var currItem = filterMapListItems()[i]
 		var currItemMarker = churchMarkers[currItem.marker]
-		console.log(currItem.name);
+		// console.log(currItem.name);
 
 		if (map === null){
 			// Just set null on all markers
