@@ -12,6 +12,20 @@ using examples and documentation as found on https://developers.google.com.
 KnockoutJS ViewModel is also implemented below using KnockoutJS documentation.
 */
 
+/* JSHint specific to allow for:
+   1. console.log output
+   2. Google Maps API calls
+   3. Knockout JS calls
+   4. File-wide 'strict' mode usage
+   5. jQuery '$' usage
+*/
+/*globals $:false */
+/*global ko */
+/*global google */
+/*jshint devel: true */
+/*jshint browser: true */
+/*jshint node: true */
+
 "use strict";
 
 /* GOOGLE MAPS Specific */

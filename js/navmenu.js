@@ -10,6 +10,16 @@ navigation responsive menu. Implementaiton was done by using examples and
 documentation as found on https://purecss.io.
 */
 
+/* JSHint specific to allow for:
+   1. console.log output
+   2. File-wide 'strict' mode usage
+   3. jQuery '$' usage
+*/
+/*globals $:false */
+/*jshint devel: true */
+/*jshint browser: true */
+/*jshint node: true */
+
 "use strict";
 
 // Customized Responsive NavMenu, from PureCSS dociumentation/examples
