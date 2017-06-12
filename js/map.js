@@ -275,6 +275,12 @@ function placesCallback(results, status) {
 	// console.log("Church Markers after placesCallback(): " + churchMarkers);
 }
 
+// Error catching function when Google Maps initial request fails
+function initMapFail() {
+	$("#map").prepend("<p>&nbsp;&nbsp;Failed to connect to and load the Google Map! The API service may be down...<br/>&nbsp;&nbsp;Please try to reload the page after a few minutes...</p>");
+	alert("Google Maps load request failed!");
+}
+
 // Google Map Load, callback on Map.html page load
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
